@@ -1,3 +1,6 @@
+# Group Members
+Kyle Du, James Parrott, Daphni Ann George, Ashwin Subramanian, Luis Gabriel Cainglet
+
 # Project Description
 ## Target Audience
 The target audience for our platform is restaurant owners who own multiple locations. Our vision for this application is to offer a service that tracks employees and their pay, menu items, prices, hours of operation, location, supply needs, revenue, and expenditure. This centralized hub of information will help owners track how well their restaurants are performing and their day-to-day needs. This will result in owners making more informed business decisions as they can better track their restaurant's performance. Owners will be able to easily find out what “needs” their location requires and any operational changes to improve revenue. 
