@@ -29,7 +29,7 @@ Overall we want to develop this application in order to have a better understand
 ## API Endpoints
 ## API Endpoints
 1. GET /user/login --> Enables the restaurant managers to log into their accounts.
-2. GET /restaurant/overview --> Enables the restaurant managers to retrieve the compiled information of their restaurant.
+2. GET /restaurant/overview --> Enables the restaurant managers to retrieve the compiled information of their restaurants.
 3. POST /restaurant/employee-details --> Enables managers to add employees.
 4. POST /restaurant/restaurant-name --> Enables managers to add a name for their restaurant(s).
 5. POST /restaurant/menu-items --> Enables managers to add menu items in their restaurant(s).
