@@ -16,3 +16,9 @@ While none of us own a restaurant or have had experience with managing a restaur
 Furthermore, we want to build this application to have a technical project that we can place on our resumes. We want to show recruiters that we understand how to design and architect web applications.  Additionally, we want to our technical understanding of API calls, database management, and user authentication and authorization. Being able to show that we understand these concepts will help make us more interesting applicants for our future roles.
 
 Overall we want to develop this application in order to have a better understanding of how to display and format information via a website. Having this understanding will help prepare us for future industrial roles and projects. Additionally, we want to work on this application to refine and improve key skills required for software engineering positions. This will help make us more desirable applicants as we will have an understanding of how to design and launch a website.
+
+# Technical Description
+
+## Architectural Diagram
+
+## Dataflow Diagram
