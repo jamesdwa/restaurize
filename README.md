@@ -27,7 +27,6 @@ Overall we want to develop this application in order to have a better understand
 ## User Story Summary Table
 
 ## API Endpoints
-## API Endpoints
 1. GET /user/login --> Enables the restaurant managers to log into their accounts.
 2. GET /restaurant/overview --> Enables the restaurant managers to retrieve the compiled information of their restaurants.
 3. POST /restaurant/employee-details --> Enables managers to add employees.
