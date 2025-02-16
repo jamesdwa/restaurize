@@ -22,4 +22,4 @@ Overall we want to develop this application in order to have a better understand
 ## Architectural Diagram
 
 ## Dataflow Diagram
-![alt text](diagrams/Data-Flow.jpg)
+![alt text](diagrams/Dataflow.jpg)
