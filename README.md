@@ -25,6 +25,15 @@ Overall we want to develop this application in order to have a better understand
 ![alt text](diagrams/Dataflow.jpg)
 
 ## User Story Summary Table
+| Priority | User | Description | Technical Implementation |
+| ---- | ---------- |-------------------- | -------------------------- |
+| P0 | As a owner | I want to be able to login into my restaurant account | Use Azure to authenticate restaurant managers |
+| P0 | As a owner | I want to see a restaurant "box" after uploading my restaurant to access and modify its attributes. | Display a clickable restaurant card that fetches stored details from MongoDB. |
+| P0 | As a owner | I want to modify my restaurant’s details at any time. | Retrieve the restaurant's data and allow updates in MongoDB. |
+| P1 | As a owner | I want to upload and organize business documents by location | Implement file upload and associate documents with restaurant locations. |
+| P1 | As a owner | I want to add and manage employees. | Store and modify employee details in MongoDB. |
+| P1 | As a owner | I want to track restaurant revenue over time. | Store revenue data in MongoDB and allow updates |
+| P2 | As a owner | I want to view analytics on my restaurant's performance | Aggregate and present data in a structured format for review. |
 
 ## API Endpoints
 1. **GET** /user/login --> Enables the restaurant managers to log into their accounts.
