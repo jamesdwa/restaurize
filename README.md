@@ -48,3 +48,12 @@ Overall we want to develop this application in order to have a better understand
 9. **POST** /restaurant/revenue --> Enables managers to add the accumulated revenue of their restaurant(s).
 
 ## Database Schemas
+Manager table:
+- managerID (Number)
+- managerName (String)
+- managerEmail (String)
+
+Restaurant Table:
+- restaurantID (Number)
+- restaurantName (String)
+- restaurantMenu (Array of strings)
