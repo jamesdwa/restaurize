@@ -20,9 +20,10 @@ Overall we want to develop this application in order to have a better understand
 # Technical Description
 
 ## Architectural Diagram
+![Photo of our architectural diagram](diagrams/Architectural-Diagram.jpg)
 
 ## Dataflow Diagram
-![alt text](diagrams/Dataflow.jpg)
+![Photo of our dataflow diagram](diagrams/Dataflow.jpg)
 
 ## User Story Summary Table
 | Priority | User | Description | Technical Implementation |
