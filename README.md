@@ -37,11 +37,13 @@ Overall we want to develop this application in order to have a better understand
 | P2 | As a owner | I want to view analytics on my restaurant's performance | Aggregate and present data in a structured format for review. |
 
 ## API Endpoints
-**GET** /user/login --> Enables the restaurant managers to log into their accounts.
+**GET** /user/login
+- Enables the restaurant managers to log into their accounts.
 
-**GET** /restaurant/overview --> Enables the restaurant managers to retrieve the compiled information of their restaurants.
+**GET** /restaurant/overview 
+-Enables the restaurant managers to retrieve the compiled information of their restaurants.
 
-**POST** --> /restaurant
+**POST** /restaurant
 - Enables managers to add a name for their restaurant(s).
 - Enables managers to add menu items in their restaurant(s).
 - Enables managers to add the location details of their restaurant(s).
@@ -49,9 +51,11 @@ Overall we want to develop this application in order to have a better understand
 - Enables managers to add the customer capacity details of their restaurant(s).
 - Enables managers to add the accumulated revenue of their restaurant(s).
 
-**DELETE** /restaurant --> Enables managers to delete a restaurant posting.
+**DELETE** /restaurant
+- Enables managers to delete a restaurant posting.
 
-**DELETE** /employees --> Enables managers to delete an employee from their restaurant(s).
+**DELETE** /employees
+-Enables managers to delete an employee from their restaurant(s).
 
 ## Database Schemas
 Manager table:
