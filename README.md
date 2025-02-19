@@ -41,7 +41,7 @@ Overall we want to develop this application in order to have a better understand
 - Enables the restaurant managers to log into their accounts.
 
 **GET** /restaurant/overview 
--Enables the restaurant managers to retrieve the compiled information of their restaurants.
+- Enables the restaurant managers to retrieve the compiled information of their restaurants.
 
 **POST** /restaurant
 - Enables managers to add a name for their restaurant(s).
