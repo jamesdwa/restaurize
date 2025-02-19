@@ -38,6 +38,7 @@ Overall we want to develop this application in order to have a better understand
 
 ## API Endpoints
 **GET** /user/login --> Enables the restaurant managers to log into their accounts.
+
 **GET** /restaurant/overview --> Enables the restaurant managers to retrieve the compiled information of their restaurants.
 
 **POST** --> /restaurant
@@ -49,6 +50,7 @@ Overall we want to develop this application in order to have a better understand
 - Enables managers to add the accumulated revenue of their restaurant(s).
 
 **DELETE** /restaurant --> Enables managers to delete a restaurant posting.
+
 **DELETE** /employees --> Enables managers to delete an employee from their restaurant(s).
 
 ## Database Schemas
