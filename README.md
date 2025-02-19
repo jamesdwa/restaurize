@@ -37,15 +37,19 @@ Overall we want to develop this application in order to have a better understand
 | P2 | As a owner | I want to view analytics on my restaurant's performance | Aggregate and present data in a structured format for review. |
 
 ## API Endpoints
-1. **GET** /user/login --> Enables the restaurant managers to log into their accounts.
-2. **GET** /restaurant/overview --> Enables the restaurant managers to retrieve the compiled information of their restaurants.
-3. **POST** /restaurant/employee-details --> Enables managers to add employees.
-4. **POST** /restaurant/restaurant-name --> Enables managers to add a name for their restaurant(s).
-5. **POST** /restaurant/menu-items --> Enables managers to add menu items in their restaurant(s).
-6. **POST** /restaurant/location --> Enables managers to add the location details of their restaurant(s).
-7. **POST** /restaurant/operation-times --> Enables managers to add the hours of operation of their restaurant(s).
-8. **POST** /restaurant/capacity --> Enables managers to add the customer capacity details of their restaurant(s).
-9. **POST** /restaurant/revenue --> Enables managers to add the accumulated revenue of their restaurant(s).
+**GET** /user/login --> Enables the restaurant managers to log into their accounts.
+**GET** /restaurant/overview --> Enables the restaurant managers to retrieve the compiled information of their restaurants.
+
+**POST** --> /restaurant
+- Enables managers to add a name for their restaurant(s).
+- Enables managers to add menu items in their restaurant(s).
+- Enables managers to add the location details of their restaurant(s).
+- Enables managers to add the hours of operation of their restaurant(s).
+- Enables managers to add the customer capacity details of their restaurant(s).
+- Enables managers to add the accumulated revenue of their restaurant(s).
+
+**DELETE** /restaurant --> Enables managers to delete a restaurant posting.
+**DELETE** /employees --> Enables managers to delete an employee from their restaurant(s).
 
 ## Database Schemas
 Manager table:
