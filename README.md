@@ -55,7 +55,7 @@ Overall we want to develop this application in order to have a better understand
 - Enables managers to delete a restaurant posting.
 
 **DELETE** /employees
--Enables managers to delete an employee from their restaurant(s).
+- Enables managers to delete an employee from their restaurant(s).
 
 ## Database Schemas
 Manager table:
