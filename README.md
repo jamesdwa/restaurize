@@ -29,7 +29,8 @@ Overall we want to develop this application in order to have a better understand
 | Priority | User | Description | Technical Implementation |
 | ---- | ---------- |-------------------- | -------------------------- |
 | P0 | As a owner | I want to be able to login into my restaurant account. | Use Azure to authenticate restaurant managers |
-| P0 | As a owner | I want to see a restaurant "box" after "uploading" my restaurant to access and modify its attributes. The upload will have its separate page where input forms as entry to build the restaurant profile. | Display a clickable restaurant card that fetches stored details from MongoDB. |
+| P0 | As a owner | I want to be able to create an restaurant posting to initiate my restaurant management process. | The upload will have its separate page where input forms as entry to build the restaurant profile. | Display a clickable restaurant card that fetches stored details from MongoDB. |
+| P0 | As a owner | I want to see a restaurant "box" after "uploading" my restaurant to access and modify its attributes. |
 | P0 | As a owner | I want to modify my restaurant’s details at any time. | When logged in, upon clicking a restaurant post, retrieve the current restaurant's data via post ID and allow updates in MongoDB. |
 | P0 | As a owner | I want to be able to delete my restaurant postings at any time. | When logged in, upon clicking a restaurant posting, reference a restaurant posting via its post ID, and have a delete button that removes the entry of the restaurant from MongoDB.
 | P1 | As a owner | I want to add and manage employees. | Store and modify employee details under a restaurant posting within MongoDB. |
