@@ -5,6 +5,11 @@ body {
   min-height: 100vh;
 }
 
+header {
+  margin: 0;
+  padding: 0;
+}
+
 header nav {
   height: 70px;
   width: 100%;
@@ -16,16 +21,21 @@ header nav {
   background-color: #1A1A1A;
 }
 
+header nav .logo-and-title {
+  display: flex;
+  align-items: center;
+}
+
 header nav .logo-container {
   display: flex;
   align-items: center;
 }
 
 header nav img {
-  height: 80px;
+  height: 50px;
   width: auto;
   margin-right: 5px;
-  margin-left: 15px;
+  margin-left: 20px;
 }
 
 header nav h1 {
@@ -52,7 +62,7 @@ nav li a {
   color: #FFFFFF;
   text-decoration: none;
   font-size: large;
-  margin-right: 15px;
+  margin-right: 20px;
   font-family: "Montserrat";
 }
 
