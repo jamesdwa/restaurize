@@ -70,7 +70,7 @@ Overall we want to develop this application in order to have a better understand
 - restaurantPhoneNum (Number)
 - restaurantMenu (Array of Strings)
 - location (String)
-- operationHours (Object)
+- operationHours (String)
 - restaurantCapacity (String)
 - restaurantRevenue (String)
 - employeeName (String)
