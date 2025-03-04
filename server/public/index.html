@@ -24,10 +24,70 @@
     </nav>
   </header>
   <main>
-    <p>Enter String</p>
-    <input type="text" id="test">
-    <button onclick="sendPost()">Send</button>
+    <div id="posting-section">
+      <div class="form-container">
+        <h2>Restaurant Information</h2>
+        <form>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="restaurantName">Restaurant Name</label>
+              <input type="text" id="restaurantName" name="restaurantName" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="restaurantPhoneNum">Phone Number</label>
+              <input type="tel" id="restaurantPhoneNum" name="restaurantPhoneNum" required>
+            </div>
+
+            <div class="form-group">
+              <label for="restaurantMenu">Restaurant Menu (Comma Separated)</label>
+              <input type="text" id="restaurantMenu" name="restaurantMenu" required placeholder="e.g. Pizza, Pasta, Salad">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="location">Location</label>
+              <input type="text" id="location" name="location" required>
+            </div>
+
+            <div class="form-group">
+              <label for="operationHours">Operation Hours (e.g. 9AM - 9PM)</label>
+              <input type="text" id="operationHours" name="operationHours" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="restaurantCapacity">Restaurant Capacity</label>
+              <input type="text" id="restaurantCapacity" name="restaurantCapacity" required>
+            </div>
+
+            <div class="form-group">
+              <label for="restaurantRevenue">Restaurant Revenue</label>
+              <input type="text" id="restaurantRevenue" name="restaurantRevenue" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="employeeName">Employee Name</label>
+              <input type="text" id="employeeName" name="employeeName" required>
+            </div>
+          </div>
+
+          <div class="form-group submit-group">
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="preview-section"></div>
   </main>
 </body>
 
 </html>
+
