@@ -3,7 +3,6 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import cors from 'cors';
-import usersRouter from './routes/users.js';
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -27,6 +26,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/users', usersRouter);
+import pathRouter from './routes/api/v1/apiv1.js'
+import models from './models.js';
+
+app.use((req, res, next) => {
+   req.models = models;
+   next();
+})
+
+app.use('/api/v1', pathRouter);
 
 export default app;
