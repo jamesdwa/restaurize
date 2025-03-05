@@ -11,12 +11,12 @@ async function main() {
 
     const restaurantModel = new mongoose.Schema({
         restaurantName: String,
-        restaurantPhoneNum: Number,
+        restaurantPhoneNum: String,
         restaurantMenu: [String],
         location: String,
         operationHours: String,
         restaurantCapacity: Number,
-        restaurantRevenue: Number,
+        restaurantRevenue: String,
         employeeName: [String],
         restaurantOwner: String,
     })

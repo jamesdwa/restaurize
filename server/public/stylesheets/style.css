@@ -282,7 +282,7 @@ button[type="submit"]:active {
   word-break: break-word;
 }
 
-.restaurant-menu {
+.restaurant-menu, .restaurant-employees {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -296,6 +296,10 @@ button[type="submit"]:active {
   border-radius: 4px;
   font-size: 12px;
   font-weight: 500;
+}
+
+.restaurant-employees .menu-item {
+  background-color: rgba(200, 200, 200, 0.15);
 }
 
 .restaurant-footer {

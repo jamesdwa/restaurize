@@ -82,6 +82,12 @@ async function loadRestaurants() {
                             </div>
                         </div>
                         <div class="detail-item">
+                            <span class="detail-label">Employees:</span>
+                            <div class="restaurant-employees">
+                                ${Array.isArray(postInfo.employeeName) ? postInfo.employeeName.map(item => `<span class="menu-item">${item}</span>`).join('') : `<span class="menu-item">${postInfo.employeeName}</span>`}
+                            </div>
+                        </div>
+                        <div class="detail-item">
                             <span class="detail-label">Revenue:</span>
                             <span class="detail-value">${postInfo.restaurantRevenue}</span>
                         </div>
