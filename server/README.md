@@ -59,18 +59,15 @@ Overall we want to develop this application in order to have a better understand
 - Enables managers to delete an employee from their restaurant(s).
 
 ## Database Schemas
-**Manager Table**
-- managerID (Number)
-- managerName (String)
-- managerEmail (String)
 
 **Restaurant Table**
-- restaurantID (Number)
+- _id (Number)
 - restaurantName (String)
 - restaurantPhoneNum (Number)
 - restaurantMenu (Array of Strings)
 - location (String)
 - operationHours (String)
-- restaurantCapacity (String)
-- restaurantRevenue (String)
-- employeeName (String)
+- restaurantCapacity (Number)
+- restaurantRevenue (Number)
+- employeeName (Array of Strings)
+- restaurantOwner (String)
