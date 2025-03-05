@@ -23,6 +23,4 @@ async function main() {
     models.RestaurantModel = mongoose.model("RestaurantModel", restaurantModel);
 }
 
-
-
 export default models;

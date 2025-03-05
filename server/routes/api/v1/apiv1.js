@@ -1,8 +1,8 @@
 import express from 'express';
 var router = express.Router();
 
-import sendRouter from './controllers/send.js';
+import sendRouter from './controllers/post.js';
 
-router.use('/send', sendRouter);
+router.use('/post', sendRouter);
 
 export default router;

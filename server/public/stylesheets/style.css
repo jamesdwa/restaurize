@@ -204,7 +204,7 @@ button[type="submit"]:active {
   margin-top: 10px;
 }
 
-.preview-cards-container {
+#preview-cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
@@ -336,7 +336,7 @@ button[type="submit"]:active {
     margin-bottom: 20px;
   }
   
-  .preview-cards-container {
+  #preview-cards-container {
     grid-template-columns: 1fr;
   }
 }
