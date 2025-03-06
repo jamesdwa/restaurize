@@ -3,6 +3,8 @@ let markers = [];
 let bounds;
 
 async function init() {
+    await loadIdentity();
+
     loadRestaurants();
     initMap();
 }

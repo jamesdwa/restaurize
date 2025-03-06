@@ -80,8 +80,24 @@ async function loadIdentity() {
                                 </div>
                             </form>
                         </div>
-                        <div style="width: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 2px solid #ff4d4d; border-radius: 10px; padding: 10px; background: #fff3f3; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
-                            <p style="font-size: 1.1em; color: #d9534f;">Log in to manage restaurants.</p>
+
+                        <!-- Warning Box -->
+                        <div style="
+                            width: 200px; 
+                            display: flex; 
+                            flex-direction: column; 
+                            align-items: center; 
+                            justify-content: center; 
+                            text-align: center; 
+                            border: 2px solid #ff4d4d; 
+                            border-radius: 10px; 
+                            padding: 20px 25px; 
+                            background: #fff3f3; 
+                            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                            margin-left: 20px;
+                        ">
+                            <p style="font-size: 1.2em; color: #d9534f; font-weight: bold; margin-bottom: 8px;">Log in required!</p>
+                            <p style="font-size: 0.9em; color: #333; font-weight: 500;">Please sign in to manage restaurants and submit information.</p>
                         </div>
                     </div>`;
             }

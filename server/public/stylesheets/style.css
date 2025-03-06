@@ -6,7 +6,6 @@ body {
   min-height: 100vh;
 }
 
-
 header {
   margin: 0;
   padding: 0;
@@ -31,10 +30,6 @@ header nav .logo-and-title {
 header nav .logo-container {
   display: flex;
   align-items: center;
-}
-
-.d-none {
-  display: none !important;
 }
 
 header nav img {
