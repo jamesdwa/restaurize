@@ -6,6 +6,7 @@
     href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="/stylesheets/style.css">
+  <script async defer src="https://maps.gomaps.pro/maps/api/js?key=AlzaSyONWszbkFUvTZsLg41cmiKWLym6OmVUiVY&libraries=geometry,places&callback=initMap"></script>
   <script src="javascripts/api_version.js"></script>
   <script src="javascripts/utils.js"></script>
   <script src="javascripts/index.js"></script>
@@ -30,9 +31,9 @@
       <div class="form-container">
         <h2>Restaurant Information</h2>
         <div class="card">
-          <img src="./images/upload.svg" id="restaurant-image"/>
+          <img src="./images/upload.svg" id="restaurant-image" />
           <label for="input-file" id="label-image">Add Image</label>
-          <input type="file" accept ="image/jpeg, image/png, image/jpg" id="input-file" name="file">
+          <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" name="file">
         </div>
 
         <form>
@@ -97,8 +98,8 @@
 
     <div id="preview-section">
       <div id="preview-cards-container">
-
       </div>
+      <div id="map"></div>
     </div>
   </main>
 </body>

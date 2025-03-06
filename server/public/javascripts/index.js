@@ -1,6 +1,65 @@
+let map;
+
 // Similar to the websharer code, the init() will load the loadRestaurants()
 async function init() {
     loadRestaurants();
+    initMap();
+}
+
+function initMap() {    
+        /* Future Reference: This sets up the default zoom on the map... */
+        map = new google.maps.Map(
+            document.getElementById('map'), 
+            {
+                zoom: 2
+            }
+        );
+        
+        addRestaurantMarkers();
+}
+
+function addRestaurantMarkers() {
+    const restaurantCards = document.querySelectorAll('.restaurant-card');
+    
+    restaurantCards.forEach(card => {
+        const locationElement = card.querySelector('.detail-item:nth-child(2) .detail-value');
+        if (!locationElement) return;
+        
+        const location = locationElement.textContent;
+        const restaurantName = card.querySelector('.restaurant-name').textContent;
+        
+        geocodeAddress(location, restaurantName);
+    });
+}
+
+function geocodeAddress(address, restaurantName) {
+    const geocoder = new google.maps.Geocoder();
+    
+    geocoder.geocode({ address: address }, (results, status) => {
+        if (status === 'OK' && results[0]) {
+            const position = results[0].geometry.location;
+            
+            const marker = new google.maps.Marker({
+                map: map,
+                position: position,
+                title: restaurantName
+            });
+            
+            const infoWindow = new google.maps.InfoWindow({
+                content: `<strong>${restaurantName}</strong><br>${address}`
+            });
+            
+            marker.addListener('click', () => {
+                infoWindow.open(map, marker);
+            });
+            
+            const bounds = new google.maps.LatLngBounds();
+            bounds.extend(position);
+            map.fitBounds(bounds);
+        } else {
+            console.error('Geocode was not successful for the following reason...', status);
+        }
+    });
 }
 
 // This calls the post API for a restaurant and sends the data to the server 
@@ -131,6 +190,10 @@ async function loadRestaurants() {
     });
 
     document.getElementById("preview-cards-container").innerHTML = postHTML.join('');
+    
+    if (map) {
+        addRestaurantMarkers();
+    }
 }
 
 function uploadRestaurantImage() {
