@@ -1,64 +1,103 @@
 let map;
+let markers = [];
+let bounds;
 
-// Similar to the websharer code, the init() will load the loadRestaurants()
 async function init() {
     loadRestaurants();
     initMap();
 }
 
 function initMap() {    
-        /* Future Reference: This sets up the default zoom on the map... */
-        map = new google.maps.Map(
-            document.getElementById('map'), 
-            {
-                zoom: 2
-            }
-        );
-        
-        addRestaurantMarkers();
+    map = new google.maps.Map(
+        document.getElementById('map'), 
+        {
+            zoom: 2,
+            center: {lat: 0, lng: 0}
+        }
+    );
+    
+    bounds = new google.maps.LatLngBounds();
+    
+    addRestaurantMarkers();
+}
+
+function clearMarkers() {
+    markers.forEach(marker => {
+        marker.setMap(null);
+    });
+    markers = [];
 }
 
 function addRestaurantMarkers() {
+    clearMarkers();
+    bounds = new google.maps.LatLngBounds();
+
     const restaurantCards = document.querySelectorAll('.restaurant-card');
-    
+    const geocodingPromises = [];
+
     restaurantCards.forEach(card => {
-        const locationElement = card.querySelector('.detail-item:nth-child(2) .detail-value');
-        if (!locationElement) return;
-        
-        const location = locationElement.textContent;
         const restaurantName = card.querySelector('.restaurant-name').textContent;
-        
-        geocodeAddress(location, restaurantName);
+        const addressElement = card.querySelector('.detail-item:nth-child(2) .detail-value');
+        if (!addressElement) return;
+
+        const address = addressElement.textContent;
+
+        geocodingPromises.push(geocodeAddressPromise(restaurantName, address));
     });
+
+    Promise.all(geocodingPromises.filter(p => p !== null))
+        .then(() => {
+            if (markers.length > 0 && map) {
+                map.fitBounds(bounds);
+
+                google.maps.event.addListenerOnce(map, 'idle', function() {
+                    if (map.getZoom() > 16) {
+                        map.setZoom(16);
+                    }
+                });
+            }
+        })
+        .catch(err => {
+            console.error("Error processing geocoding requests:", err);
+        });
 }
 
-function geocodeAddress(address, restaurantName) {
-    const geocoder = new google.maps.Geocoder();
-    
-    geocoder.geocode({ address: address }, (results, status) => {
-        if (status === 'OK' && results[0]) {
-            const position = results[0].geometry.location;
-            
-            const marker = new google.maps.Marker({
-                map: map,
-                position: position,
-                title: restaurantName
-            });
-            
-            const infoWindow = new google.maps.InfoWindow({
-                content: `<strong>${restaurantName}</strong><br>${address}`
-            });
-            
-            marker.addListener('click', () => {
-                infoWindow.open(map, marker);
-            });
-            
-            const bounds = new google.maps.LatLngBounds();
-            bounds.extend(position);
-            map.fitBounds(bounds);
-        } else {
-            console.error('Geocode was not successful for the following reason...', status);
-        }
+
+function geocodeAddressPromise(restaurantName, address) {
+    return new Promise((resolve, reject) => {
+        const geocoder = new google.maps.Geocoder();
+        
+        const searchQuery = `${restaurantName}, ${address}`;
+        
+        geocoder.geocode({ address: searchQuery }, (results, status) => {
+            if (status === 'OK' && results[0]) {
+                const position = results[0].geometry.location;
+
+                const marker = new google.maps.Marker({
+                    map: map,
+                    position: position,
+                    title: restaurantName,
+                    animation: google.maps.Animation.DROP
+                });
+
+                markers.push(marker);
+
+                const infoWindow = new google.maps.InfoWindow({
+                    content: `<strong>${restaurantName}</strong><br>${results[0].formatted_address}`
+                });
+
+                marker.addListener('click', () => {
+                    infoWindow.open(map, marker);
+                });
+
+                bounds.extend(position);
+
+                resolve();
+            } else {
+                console.error(`Geocode was not successful for ${restaurantName}: ${status}`);
+                resolve();
+            }
+        });
     });
 }
 
