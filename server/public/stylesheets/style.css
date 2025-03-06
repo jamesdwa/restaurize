@@ -11,6 +11,10 @@ header {
   padding: 0;
 }
 
+#identity_div p {
+  margin-right: 20px;
+}
+
 header nav {
   height: 70px;
   width: 100%;
@@ -447,6 +451,230 @@ button[type="submit"]:active {
   background-repeat: no-repeat;
 }
 
+body.non-authenticated {
+  background-color: #1E1E1E;
+}
+
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  max-width: auto;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.welcome-content {
+  text-align: center;
+}
+
+.welcome-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.welcome-logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.welcome-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #FF4C60;
+  margin-bottom: 15px;
+}
+
+.welcome-description {
+  font-size: 1.2rem;
+  color: #FFFFFF;
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+.features-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.feature-card {
+  background-color: #2D2D2D;
+  border-radius: 12px;
+  padding: 30px;
+  width: 300px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  color: #FF4C60;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+.feature-card p {
+  color: #CCCCCC;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.cta-container {
+  margin-top: 20px;
+}
+
+.cta-button, .preview-cta-button {
+  display: inline-block;
+  background-color: #FF4C60;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 16px 36px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 15px rgba(255, 76, 96, 0.3);
+}
+
+.cta-button:hover, .preview-cta-button:hover {
+  background-color: #FF2A3D;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 20px rgba(255, 76, 96, 0.4);
+}
+
+.cta-subtext {
+  margin-top: 15px;
+  color: #AAAAAA;
+}
+
+.cta-subtext a {
+  color: #FF4C60;
+  text-decoration: none;
+}
+
+.cta-subtext a:hover {
+  text-decoration: underline;
+}
+
+.preview-glimpse {
+  position: relative;
+  padding: 30px;
+  background-color: #2D2D2D;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.preview-glimpse h2 {
+  color: #FF4C60;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#sample-restaurants {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.preview-card {
+  background-color: #3A3A3A;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.preview-image {
+  height: 180px;
+  overflow: hidden;
+}
+
+.preview-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.preview-info {
+  padding: 20px;
+}
+
+.preview-info h3 {
+  color: #FF4C60;
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+}
+
+.preview-location {
+  color: #CCCCCC;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.blur-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(45, 45, 45, 0.3) 0%, rgba(45, 45, 45, 0.9) 70%);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.blur-content {
+  text-align: center;
+}
+
+.blur-content h3 {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.preview-cta-button {
+  padding: 12px 30px;
+  font-size: 1rem;
+}
+
+.login-button {
+  background-color: #FF4C60;
+  color: white !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.login-button:hover {
+  background-color: #FF2A3D;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 76, 96, 0.3);
+}
+
 @media (max-width: 992px) {
   main {
     display: flex;
@@ -518,5 +746,54 @@ button[type="submit"]:active {
   .detail-value {
     font-size: 14px;
   }
+
+  .welcome-content h1 {
+    font-size: 2.2rem;
+  }
+  
+  .features-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .feature-card {
+    width: 100%;
+    max-width: 400px;
+  }
 }
 
+@media (max-width: 600px) {
+  .welcome-container {
+    padding: 20px 15px;
+  }
+  
+  .welcome-logo {
+    width: 80px;
+  }
+  
+  .welcome-content h1 {
+    font-size: 1.8rem;
+  }
+  
+  .welcome-description {
+    font-size: 1rem;
+  }
+  
+  .cta-button {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+  
+  #sample-restaurants {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-glimpse {
+    padding: 15px;
+  }
+  
+  .blur-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+}

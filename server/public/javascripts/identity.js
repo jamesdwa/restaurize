@@ -1,9 +1,7 @@
-let myIdentity = undefined;
-
 async function loadIdentity() {
     const identity_div = document.getElementById("identity_div");
     const postingSection = document.getElementById("posting-section");
-    const restaurantCardsContainer = document.getElementById("preview-section");
+    const previewSection = document.getElementById("preview-section");
     const formElements = document.querySelectorAll("#posting-section input, #posting-section button");
 
     try {
@@ -20,87 +18,40 @@ async function loadIdentity() {
             // Enable the form
             formElements.forEach(el => el.disabled = false);
             if (postingSection) postingSection.classList.remove("d-none");
-            if (restaurantCardsContainer) restaurantCardsContainer.classList.remove("d-none");
+            if (previewSection) previewSection.classList.remove("d-none");
+            
+            document.body.classList.remove("non-authenticated");
         } else {
             myIdentity = undefined;
             identity_div.innerHTML = `
                 <ul>
-                    <li><a href="signin" class="btn btn-primary" role="button" style="color: red;">Log in</a></li>
+                    <li><a href="signin" class="login-button" role="button">Log in</a></li>
                 </ul>`;
-
-            // Disable the form but keep it visible
-            formElements.forEach(el => el.disabled = true);
-
-            // Keep the restaurant section visible and only modify the right side
-            if (postingSection) {
-                postingSection.classList.remove("d-none");
-                postingSection.innerHTML = `
-                    <div class="form-container" style="display: flex; justify-content: space-between; align-items: center;">
-                        <div style="flex: 1;">
-                            <h2>Restaurant Information</h2>
-                            <form>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="restaurantName">Restaurant Name</label>
-                                        <input type="text" id="restaurantName" name="restaurantName" disabled>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="restaurantPhoneNum">Phone Number</label>
-                                        <input type="tel" id="restaurantPhoneNum" name="restaurantPhoneNum" disabled>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="restaurantMenu">Restaurant Menu</label>
-                                        <input type="text" id="restaurantMenu" name="restaurantMenu" disabled>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="location">Location</label>
-                                        <input type="text" id="location" name="location" disabled>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="operationHours">Operation Hours</label>
-                                        <input type="text" id="operationHours" name="operationHours" disabled>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="restaurantCapacity">Restaurant Capacity</label>
-                                        <input type="text" id="restaurantCapacity" name="restaurantCapacity" disabled>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="restaurantRevenue">Restaurant Revenue</label>
-                                        <input type="text" id="restaurantRevenue" name="restaurantRevenue" disabled>
-                                    </div>
-                                </div>
-                                <div class="form-group submit-group">
-                                    <button type="submit" disabled>Submit</button>
-                                </div>
-                            </form>
+            
+            document.body.classList.add("non-authenticated");
+            
+            const mainElement = document.querySelector("main");
+            mainElement.innerHTML = `
+                <div class="welcome-container">
+                    <div class="welcome-content">
+                        <div class="welcome-header">
+                            <img src="./images/logo.png" alt="Restaurize Logo" class="welcome-logo">
+                            <h1>Welcome to Restaurize</h1>
                         </div>
-
-                        <!-- Warning Box -->
-                        <div style="
-                            width: 200px; 
-                            display: flex; 
-                            flex-direction: column; 
-                            align-items: center; 
-                            justify-content: center; 
-                            text-align: center; 
-                            border: 2px solid #ff4d4d; 
-                            border-radius: 10px; 
-                            padding: 20px 25px; 
-                            background: #fff3f3; 
-                            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-                            margin-left: 20px;
-                        ">
-                            <p style="font-size: 1.2em; color: #d9534f; font-weight: bold; margin-bottom: 8px;">Log in required!</p>
-                            <p style="font-size: 0.9em; color: #333; font-weight: 500;">Please sign in to manage restaurants and submit information.</p>
+                    </div>
+                    <div class="preview-glimpse">
+                        <h2>Restaurant Previews</h2>
+                        <div id="sample-restaurants"></div>
+                        <div class="blur-overlay">
+                            <div class="blur-content">
+                                <h3>Access Restaurants</h3>
+                                <a href="signin" class="preview-cta-button">Log in</a>
+                            </div>
                         </div>
-                    </div>`;
-            }
+                    </div>
+                </div>`;
+                
+            loadPreviewRestaurants();
         }
     } catch (error) {
         myIdentity = undefined;
@@ -111,5 +62,45 @@ async function loadIdentity() {
         </div>`;
         document.getElementById("identity_error_span").innerText = error;
         formElements.forEach(el => el.disabled = true);
+    }
+}
+
+/* Testing... Show only the first few restaurants... */
+async function loadPreviewRestaurants() {
+    try {
+        let postsJson = await fetchJSON(`api/${apiVersion}/post`);
+        let limitedPosts = postsJson.slice(0, 3);
+        
+        let postHTML = limitedPosts.map(postInfo => {
+            let imageHtml = '';
+            if (postInfo.restaurantImage && postInfo.restaurantImage.data) {
+                const imageBase64 = postInfo.restaurantImage.data;
+                const contentType = postInfo.restaurantImage.contentType || 'image/jpeg';
+                imageHtml = `<img src="data:${contentType};base64,${imageBase64}" alt="${postInfo.restaurantName}"/>`;
+            } else if (postInfo.restaurantImage) {
+                imageHtml = `<img src="${postInfo.restaurantImage}" alt="${postInfo.restaurantName}"/>`;
+            } else {
+                imageHtml = `<div class="no-image-placeholder">No Image</div>`;
+            }
+
+            return (`
+                <div class="preview-card">
+                    <div class="preview-image">
+                        ${imageHtml}
+                    </div>
+                    <div class="preview-info">
+                        <h3>${postInfo.restaurantName}</h3>
+                        <p class="preview-location">${postInfo.location}</p>
+                    </div>
+                </div>
+            `);
+        });
+
+        const sampleRestaurantsContainer = document.getElementById("sample-restaurants");
+        if (sampleRestaurantsContainer) {
+            sampleRestaurantsContainer.innerHTML = postHTML.join('');
+        }
+    } catch (error) {
+        console.error("Error loading preview restaurants:", error);
     }
 }

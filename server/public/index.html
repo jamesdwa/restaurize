@@ -6,7 +6,8 @@
     href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="/stylesheets/style.css">
-  <script async defer src="https://maps.gomaps.pro/maps/api/js?key=AlzaSyONWszbkFUvTZsLg41cmiKWLym6OmVUiVY&libraries=geometry,places&callback=initMap"></script>
+  <script async defer
+    src="https://maps.gomaps.pro/maps/api/js?key=AlzaSyONWszbkFUvTZsLg41cmiKWLym6OmVUiVY&libraries=geometry,places&callback=initMap"></script>
   <script src="javascripts/api_version.js"></script>
   <script src="javascripts/utils.js"></script>
   <script src="javascripts/identity.js"></script>
@@ -23,14 +24,12 @@
         </div>
         <h1>Restaurize</h1>
       </div>
-    
+
       <div id="errorInfo" class="alert alert-danger fade show" role="alert" style="opacity:0"></div>
-    
-      <div id="identity_div">loading...</div>
-  
+      <div id="identity_div">
+        <p>Loading...</p>
+      </div>
     </nav>
-    
-    
   </header>
   <main>
     <div id="posting-section" class="d-none">
@@ -104,248 +103,7 @@
     </div>
 
     <div id="preview-section" class="d-none">
-
-        <div id="preview-cards-container">
-
-          <div id="restaurant-card">
-
-          <div class="card-image-container">
-            <div class="card-image-placeholder"></div>
-          </div>
-          <div class="card-content">
-            <h3 class="restaurant-name">Italian Delights</h3>
-            <div class="restaurant-details">
-              <div class="detail-item">
-                <span class="detail-label">Phone:</span>
-                <span class="detail-value">(555) 123-4567</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Location:</span>
-                <span class="detail-value">123 Main Street, New York</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Hours:</span>
-                <span class="detail-value">10AM - 10PM</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Menu:</span>
-                <div class="restaurant-menu">
-                  <span class="menu-item">Pizza</span>
-                  <span class="menu-item">Pasta</span>
-                  <span class="menu-item">Risotto</span>
-                  <span class="menu-item">Tiramisu</span>
-                </div>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Revenue:</span>
-                <span class="detail-value">$450,000</span>
-              </div>
-            </div>
-            <div class="restaurant-footer">
-              <span class="capacity-badge">Capacity: 120</span>
-              <span class="employee-badge">Added by: Marco</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="restaurant-card">
-          <div class="card-image-container">
-            <div class="card-image-placeholder"></div>
-          </div>
-          <div class="card-content">
-            <h3 class="restaurant-name">Sushi Palace</h3>
-            <div class="restaurant-details">
-              <div class="detail-item">
-                <span class="detail-label">Phone:</span>
-                <span class="detail-value">(555) 987-6543</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Location:</span>
-                <span class="detail-value">456 Oak Avenue, San Francisco</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Hours:</span>
-                <span class="detail-value">11AM - 11PM</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Menu:</span>
-                <div class="restaurant-menu">
-                  <span class="menu-item">Sushi</span>
-                  <span class="menu-item">Sashimi</span>
-                  <span class="menu-item">Tempura</span>
-                  <span class="menu-item">Ramen</span>
-                </div>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Revenue:</span>
-                <span class="detail-value">$680,000</span>
-              </div>
-            </div>
-            <div class="restaurant-footer">
-              <span class="capacity-badge">Capacity: 80</span>
-              <span class="employee-badge">Added by: Akira</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="restaurant-card">
-          <div class="card-image-container">
-            <div class="card-image-placeholder"></div>
-          </div>
-          <div class="card-content">
-            <h3 class="restaurant-name">Burger Bliss</h3>
-            <div class="restaurant-details">
-              <div class="detail-item">
-                <span class="detail-label">Phone:</span>
-                <span class="detail-value">(555) 234-5678</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Location:</span>
-                <span class="detail-value">789 Pine Street, Chicago</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Hours:</span>
-                <span class="detail-value">9AM - 9PM</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Menu:</span>
-                <div class="restaurant-menu">
-                  <span class="menu-item">Classic Burger</span>
-                  <span class="menu-item">Cheesy Fries</span>
-                  <span class="menu-item">Milkshakes</span>
-                </div>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Revenue:</span>
-                <span class="detail-value">$320,000</span>
-              </div>
-            </div>
-            <div class="restaurant-footer">
-              <span class="capacity-badge">Capacity: 60</span>
-              <span class="employee-badge">Added by: Sarah</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="restaurant-card">
-          <div class="card-image-container">
-            <div class="card-image-placeholder"></div>
-          </div>
-          <div class="card-content">
-            <h3 class="restaurant-name">Italian Delights</h3>
-            <div class="restaurant-details">
-              <div class="detail-item">
-                <span class="detail-label">Phone:</span>
-                <span class="detail-value">(555) 123-4567</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Location:</span>
-                <span class="detail-value">123 Main Street, New York</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Hours:</span>
-                <span class="detail-value">10AM - 10PM</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Menu:</span>
-                <div class="restaurant-menu">
-                  <span class="menu-item">Pizza</span>
-                  <span class="menu-item">Pasta</span>
-                  <span class="menu-item">Risotto</span>
-                  <span class="menu-item">Tiramisu</span>
-                </div>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Revenue:</span>
-                <span class="detail-value">$450,000</span>
-              </div>
-            </div>
-            <div class="restaurant-footer">
-              <span class="capacity-badge">Capacity: 120</span>
-              <span class="employee-badge">Added by: Marco</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="restaurant-card">
-          <div class="card-image-container">
-            <div class="card-image-placeholder"></div>
-          </div>
-          <div class="card-content">
-            <h3 class="restaurant-name">Sushi Palace</h3>
-            <div class="restaurant-details">
-              <div class="detail-item">
-                <span class="detail-label">Phone:</span>
-                <span class="detail-value">(555) 987-6543</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Location:</span>
-                <span class="detail-value">456 Oak Avenue, San Francisco</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Hours:</span>
-                <span class="detail-value">11AM - 11PM</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Menu:</span>
-                <div class="restaurant-menu">
-                  <span class="menu-item">Sushi</span>
-                  <span class="menu-item">Sashimi</span>
-                  <span class="menu-item">Tempura</span>
-                  <span class="menu-item">Ramen</span>
-                </div>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Revenue:</span>
-                <span class="detail-value">$680,000</span>
-              </div>
-            </div>
-            <div class="restaurant-footer">
-              <span class="capacity-badge">Capacity: 80</span>
-              <span class="employee-badge">Added by: Akira</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="restaurant-card">
-          <div class="card-image-container">
-            <div class="card-image-placeholder"></div>
-          </div>
-          <div class="card-content">
-            <h3 class="restaurant-name">Burger Bliss</h3>
-            <div class="restaurant-details">
-              <div class="detail-item">
-                <span class="detail-label">Phone:</span>
-                <span class="detail-value">(555) 234-5678</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Location:</span>
-                <span class="detail-value">789 Pine Street, Chicago</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Hours:</span>
-                <span class="detail-value">9AM - 9PM</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Menu:</span>
-                <div class="restaurant-menu">
-                  <span class="menu-item">Classic Burger</span>
-                  <span class="menu-item">Cheesy Fries</span>
-                  <span class="menu-item">Milkshakes</span>
-                </div>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Revenue:</span>
-                <span class="detail-value">$320,000</span>
-              </div>
-            </div>
-            <div class="restaurant-footer">
-              <span class="capacity-badge">Capacity: 60</span>
-              <span class="employee-badge">Added by: Sarah</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div id="preview-cards-container"></div>
       <div id="map"></div>
     </div>
   </main>
