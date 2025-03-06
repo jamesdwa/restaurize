@@ -15,6 +15,7 @@ async function uploadResturant() {
     let employeeName = document.getElementById("employeeName").value;
     let inputFile = document.getElementById("input-file").files[0];
 
+    /* FormData is an interface where you can set key/value pairs... */
     const formData = new FormData();
     
     formData.append("restaurantName", restaurantName);
