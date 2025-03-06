@@ -19,7 +19,13 @@ async function main() {
         restaurantRevenue: String,
         employeeName: [String],
         restaurantOwner: String,
+        restaurantImage: {
+            data: Buffer,
+            contentType: String,
+            filename: String
+        }
     })
+
     models.RestaurantModel = mongoose.model("RestaurantModel", restaurantModel);
 }
 
