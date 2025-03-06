@@ -3,21 +3,23 @@ let markers = [];
 let bounds;
 
 async function init() {
+    await loadIdentity();
+
     loadRestaurants();
     initMap();
 }
 
-function initMap() {    
+function initMap() {
     map = new google.maps.Map(
-        document.getElementById('map'), 
+        document.getElementById('map'),
         {
             zoom: 2,
-            center: {lat: 0, lng: 0}
+            center: { lat: 0, lng: 0 }
         }
     );
-    
+
     bounds = new google.maps.LatLngBounds();
-    
+
     addRestaurantMarkers();
 }
 
@@ -50,7 +52,7 @@ function addRestaurantMarkers() {
             if (markers.length > 0 && map) {
                 map.fitBounds(bounds);
 
-                google.maps.event.addListenerOnce(map, 'idle', function() {
+                google.maps.event.addListenerOnce(map, 'idle', function () {
                     if (map.getZoom() > 16) {
                         map.setZoom(16);
                     }
@@ -66,9 +68,9 @@ function addRestaurantMarkers() {
 function geocodeAddressPromise(restaurantName, address) {
     return new Promise((resolve, reject) => {
         const geocoder = new google.maps.Geocoder();
-        
+
         const searchQuery = `${restaurantName}, ${address}`;
-        
+
         geocoder.geocode({ address: searchQuery }, (results, status) => {
             if (status === 'OK' && results[0]) {
                 const position = results[0].geometry.location;
@@ -115,7 +117,7 @@ async function uploadResturant() {
 
     /* FormData is an interface where you can set key/value pairs... */
     const formData = new FormData();
-    
+
     formData.append("restaurantName", restaurantName);
     formData.append("restaurantPhoneNum", restaurantPhoneNum);
     formData.append("restaurantMenu", restaurantMenu);
@@ -124,7 +126,7 @@ async function uploadResturant() {
     formData.append("restaurantCapacity", restaurantCapacity);
     formData.append("restaurantRevenue", restaurantRevenue);
     formData.append("employeeName", employeeName);
-    
+
     if (inputFile) {
         formData.append("file", inputFile);
     }
@@ -134,13 +136,13 @@ async function uploadResturant() {
             method: "POST",
             body: formData,
         });
-        
+
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
+
         const result = await response.json();
-        
+
         // Clear form fields on success
         document.getElementById("restaurantName").value = "";
         document.getElementById("restaurantPhoneNum").value = "";
@@ -151,23 +153,23 @@ async function uploadResturant() {
         document.getElementById("restaurantRevenue").value = "";
         document.getElementById("employeeName").value = "";
         document.getElementById("input-file").value = "";
-        
+
         let restaurantImage = document.getElementById("restaurant-image");
         if (restaurantImage) {
             restaurantImage.src = "";
         }
-        
+
         loadRestaurants();
-        
+
     } catch (error) {
         console.error("Error uploading restaurant:", error);
-        throw(error);
+        throw (error);
     }
 }
 
 async function loadRestaurants() {
     let postsJson = await fetchJSON(`api/${apiVersion}/post`);
-    
+
     let postHTML = postsJson.map(postInfo => {
         let imageHtml = '';
         if (postInfo.restaurantImage && postInfo.restaurantImage.data) {
@@ -229,7 +231,7 @@ async function loadRestaurants() {
     });
 
     document.getElementById("preview-cards-container").innerHTML = postHTML.join('');
-    
+
     if (map) {
         addRestaurantMarkers();
     }
@@ -240,11 +242,11 @@ function uploadRestaurantImage() {
     let inputFile = document.getElementById("input-file");
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     let restaurantImage = document.getElementById("restaurant-image");
     let inputFile = document.getElementById("input-file");
-    
-    inputFile.onchange = function() {
+
+    inputFile.onchange = function () {
         if (inputFile.files && inputFile.files[0]) {
             restaurantImage.src = URL.createObjectURL(inputFile.files[0]);
         }
