@@ -226,9 +226,9 @@ async function loadRestaurants() {
                         <span class="capacity-badge">Capacity: ${postInfo.restaurantCapacity}</span>
                         <div class="footer-right-section">
                             <span class="employee-badge">Added by: ${postInfo.restaurantOwner || 'Marco'}</span>
-                            <button class="delete-button" data-id="${postInfo._id}">Delete</button>
                         </div>
                     </div>
+                    <button class="delete-button" data-id="${postInfo._id}">Delete</button>
                 </div>
             </div>
         `);
