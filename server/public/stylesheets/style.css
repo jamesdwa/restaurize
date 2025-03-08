@@ -23,7 +23,7 @@ header nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333333;
+  /* background-color: #333333; */
 }
 
 header nav .logo-and-title {
@@ -472,13 +472,13 @@ body.non-authenticated {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 
 .welcome-logo {
-  width: 100px;
+  width: 80px;
   height: auto;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .welcome-content h1 {
@@ -796,6 +796,101 @@ body.non-authenticated {
     font-size: 1.2rem;
     margin-bottom: 15px;
   }
+}
+
+/* Animation for the welcome heading */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes colorPulse {
+  0% {
+    color: #FF4C60;
+  }
+  50% {
+    color: #FF7A85;
+  }
+  100% {
+    color: #FF4C60;
+  }
+}
+
+.welcome-header h1 {
+  animation: fadeInUp 1.2s ease-out forwards, colorPulse 3s infinite;
+}
+
+.welcome-logo {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.welcome-description {
+  animation: fadeInUp 1.5s ease-out forwards;
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.feature-card {
+  animation: slideInFromLeft 0.8s ease-out forwards;
+}
+
+.feature-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.feature-card:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.preview-glimpse {
+  animation: fadeIn 1.5s ease-out forwards;
+  animation-delay: 0.6s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 8px 15px rgba(255, 76, 96, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 12px 20px rgba(255, 76, 96, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 8px 15px rgba(255, 76, 96, 0.3);
+  }
+}
+
+.preview-cta-button {
+  animation: pulse 2s infinite;
+  animation-delay: 2s;
 }
 
 /* Restaurant Detail Modal */
