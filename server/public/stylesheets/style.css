@@ -416,6 +416,14 @@ button[type="submit"]:active {
   font-weight: 500;
 }
 
+.restaurant-employees .menu-item:hover {
+  background-color: #FF2A3D;
+}
+
+.restaurant-employees span {
+  color: white;
+}
+
 .restaurant-employees .menu-item {
   background-color: rgba(200, 200, 200, 0.15);
 }
@@ -1029,7 +1037,6 @@ body.non-authenticated {
   gap: 10px;
 }
 
-/* Delete Button for Restaurant Cards */
 .delete-button {
   background-color: #FF4C60;
   color: white;
@@ -1040,6 +1047,7 @@ body.non-authenticated {
   font-size: 14px;
   font-weight: 500;
   transition: all 0.3s ease;
+  margin-top: 10px;
 }
 
 .delete-button:hover {
@@ -1052,12 +1060,10 @@ body.non-authenticated {
   transform: translateY(0);
 }
 
-/* Make restaurant cards look clickable */
 .restaurant-card {
   cursor: pointer;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .restaurant-details-container {
     grid-template-columns: 1fr;
