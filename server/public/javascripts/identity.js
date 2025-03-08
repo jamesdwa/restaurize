@@ -11,7 +11,7 @@ async function loadIdentity() {
             myIdentity = identityInfo.userInfo.username;
             identity_div.innerHTML = `
                 <ul>
-                    <li><a href="/userInfo.html?user=${encodeURIComponent(identityInfo.userInfo.username)}">${escapeHTML(identityInfo.userInfo.name)} (${escapeHTML(identityInfo.userInfo.username)})</a></li>
+                    <li><a href="">${escapeHTML(identityInfo.userInfo.name)} (${escapeHTML(identityInfo.userInfo.username)})</a></li>
                     <li><a href="signout" class="btn btn-danger" role="button">Log out</a></li>
                 </ul>`;
 
@@ -36,7 +36,7 @@ async function loadIdentity() {
                     <div class="welcome-content">
                         <div class="welcome-header">
                             <img src="./images/logo.png" alt="Restaurize Logo" class="welcome-logo">
-                            <h1>Welcome to Restaurize</h1>
+                            <h1>Welcome</h1>
                         </div>
                     </div>
                     <div class="preview-glimpse">
