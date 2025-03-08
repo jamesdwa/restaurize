@@ -1,6 +1,7 @@
 let map;
 let markers = [];
 let bounds;
+let currentModal = null;
 
 async function init() {
     await loadIdentity();
@@ -223,7 +224,10 @@ async function loadRestaurants() {
                     </div>
                     <div class="restaurant-footer">
                         <span class="capacity-badge">Capacity: ${postInfo.restaurantCapacity}</span>
-                        <span class="employee-badge">Added by: ${postInfo.restaurantOwner || 'Marco'}</span>
+                        <div class="footer-right-section">
+                            <span class="employee-badge">Added by: ${postInfo.restaurantOwner || 'Marco'}</span>
+                            <button class="delete-button" data-id="${postInfo._id}">Delete</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -232,9 +236,174 @@ async function loadRestaurants() {
 
     document.getElementById("preview-cards-container").innerHTML = postHTML.join('');
 
+    const restaurantCards = document.querySelectorAll('.restaurant-card');
+    postsJson.forEach((postInfo, index) => {
+        const card = restaurantCards[index];
+        card.addEventListener('click', (event) => {
+            handleRestaurantCardClick(event, postInfo);
+        });
+    });
+
+    const deleteButtons = document.querySelectorAll('.delete-button');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const restaurantId = button.getAttribute('data-id');
+            console.log("Delete clicked for ID:", restaurantId);
+            
+            // confirm once before deleting
+            if (confirm('Are you sure you want to delete this restaurant?')) {
+                deleteRestaurant(restaurantId);
+            }
+        });
+    });
+
     if (map) {
         addRestaurantMarkers();
     }
+}
+
+function showRestaurantDetail(restaurantData) {
+    if (currentModal) {
+        document.body.removeChild(currentModal);
+    }
+
+    const modal = document.createElement('div');
+    modal.className = 'restaurant-modal';
+    
+    const menuListHTML = Array.isArray(restaurantData.restaurantMenu) 
+        ? restaurantData.restaurantMenu.map(item => `<span class="menu-item">${item}</span>`).join('') 
+        : '';
+    
+    const employeeListHTML = Array.isArray(restaurantData.employeeName) 
+        ? restaurantData.employeeName.map(name => `<span class="menu-item">${name}</span>`).join('') 
+        : `<span class="menu-item">${restaurantData.employeeName}</span>`;
+
+    let imageHtml = '';
+    if (restaurantData.restaurantImage && restaurantData.restaurantImage.data) {
+        const imageBase64 = restaurantData.restaurantImage.data;
+        const contentType = restaurantData.restaurantImage.contentType || 'image/jpeg';
+        imageHtml = `<img src="data:${contentType};base64,${imageBase64}" alt="${restaurantData.restaurantName}" class="detail-image"/>`;
+    } else if (restaurantData.restaurantImage) {
+        imageHtml = `<img src="${restaurantData.restaurantImage}" alt="${restaurantData.restaurantName}" class="detail-image"/>`;
+    } else {
+        imageHtml = `<div class="no-image-placeholder detail-image-placeholder">No Image</div>`;
+    }
+
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>${restaurantData.restaurantName}</h2>
+                <button class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    ${imageHtml}
+                </div>
+                <div class="restaurant-details-container">
+                    <div class="detail-section">
+                        <h3>Contact Information</h3>
+                        <div class="detail-row">
+                            <span class="detail-label">Phone:</span>
+                            <span class="detail-value">${restaurantData.restaurantPhoneNum}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Location:</span>
+                            <span class="detail-value">${restaurantData.location}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3>Restaurant Information</h3>
+                        <div class="detail-row">
+                            <span class="detail-label">Hours:</span>
+                            <span class="detail-value">${restaurantData.operationHours}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Capacity:</span>
+                            <span class="detail-value">${restaurantData.restaurantCapacity}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Revenue:</span>
+                            <span class="detail-value">${restaurantData.restaurantRevenue}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3>Menu Items</h3>
+                        <div class="detail-menu-container">
+                            ${menuListHTML}
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3>Employees</h3>
+                        <div class="detail-employees-container">
+                            ${employeeListHTML}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    modal.querySelector('.close-button').addEventListener('click', () => {
+        document.body.removeChild(modal);
+        currentModal = null;
+    });
+
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            document.body.removeChild(modal);
+            currentModal = null;
+        }
+    });
+
+    document.body.appendChild(modal);
+    currentModal = modal;
+}
+
+function handleRestaurantCardClick(event, restaurantData) {
+    if (event.target.classList.contains('delete-button') || 
+        event.target.closest('.delete-button')) {
+        return;
+    }
+    
+    showRestaurantDetail(restaurantData);
+}
+
+async function deleteRestaurant(restaurantId) {
+    try {
+        const response = await fetch(`api/${apiVersion}/post/${restaurantId}`, {
+            method: 'DELETE'
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        
+        if (result.status === "success") {
+            // reload all restaurants if successful
+            loadRestaurants();
+        } else {
+            console.error("Error deleting restaurant:", result.error);
+        }
+    } catch (error) {
+        console.error("Error deleting restaurant:", error);
+        displayError("Failed to delete restaurant. Please try again.");
+    }
+}
+
+function displayError(message) {
+    const errorInfo = document.getElementById('errorInfo');
+    errorInfo.textContent = message;
+    errorInfo.style.opacity = 1;
+    
+    setTimeout(() => {
+        errorInfo.style.opacity = 0;
+    }, 5000);
 }
 
 function uploadRestaurantImage() {

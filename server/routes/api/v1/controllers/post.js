@@ -89,6 +89,7 @@ router.get('/', async function(req, res, next) {
             allPosts.map(async post => {
                 // Create a base object with all restaurant data
                 let restaurantData = {
+                    _id: post._id,
                     restaurantName: post.restaurantName, 
                     restaurantPhoneNum: post.restaurantPhoneNum, 
                     restaurantMenu: post.restaurantMenu, 
@@ -118,6 +119,44 @@ router.get('/', async function(req, res, next) {
     } catch (err) {
         console.log("Error getting the posts...", err);
         res.status(500).json({"status": "error", "error": err.toString()});
+    }
+});
+
+router.delete('/:id', async function(req, res, next) {
+    try {
+        // Check if the user is authenticated
+        // if (!req.session.isAuthenticated) {
+        //     return res.status(401).json({ status: "error", error: "not logged in" });
+        // }
+        
+        const restaurantId = req.params.id;
+        
+        if (!restaurantId) {
+            return res.status(400).json({ status: "error", error: "Restaurant ID is required" });
+        }
+        
+        const result = await req.models.RestaurantModel.findByIdAndDelete(restaurantId);
+        
+        if (!result) {
+            return res.status(404).json({ status: "error", error: "Restaurant not found" });
+        }
+        
+        // deleting the restaurant image if it exists from file system
+        if (result.restaurantImage && result.restaurantImage.filename) {
+            try {
+                const filePath = path.join('uploads/', result.restaurantImage.filename);
+                if (fs.existsSync(filePath)) {
+                    fs.unlinkSync(filePath);
+                }
+            } catch (fileError) {
+                console.log("Error deleting file:", fileError);
+            }
+        }
+        
+        res.json({ status: "success", message: "Restaurant deleted successfully" });
+    } catch (error) {
+        console.log("Error in restaurant delete:", error);
+        res.status(500).json({ status: "error", error: error.toString() });
     }
 });
 
