@@ -19,7 +19,7 @@ const upload = multer({ storage: storage });
 router.post('/', upload.single('file'), async function (req, res, next) {
     console.log("Hello")
     console.log(req.file);
-    if(req.session.isAuthenticated){
+    if (req.session.isAuthenticated) {
         try {
             console.log("Request restaurantName is " + req.body.restaurantName +
                 "\n restaurantPhoneNum " + req.body.restaurantPhoneNum +
@@ -30,7 +30,7 @@ router.post('/', upload.single('file'), async function (req, res, next) {
                 "\n employeeName " + req.body.employeeName +
                 "\n restaurantOwner " + req.body.restaurantOwner +
                 "\n restaurantMenu " + req.body.restaurantMenu);
-            
+
             // process the menu and employees 
             const processedRestaurantMenu = req.body.restaurantMenu.split(",");
             const processedEmployeeName = req.body.employeeName.split(",");
@@ -45,7 +45,7 @@ router.post('/', upload.single('file'), async function (req, res, next) {
                 restaurantCapacity: req.body.restaurantCapacity,
                 restaurantRevenue: req.body.restaurantRevenue,
                 employeeName: processedEmployeeName,
-                restaurantOwner: req.session.account.username, 
+                restaurantOwner: req.session.account.username,
             };
 
             // Add image data if a file was uploaded
@@ -64,12 +64,12 @@ router.post('/', upload.single('file'), async function (req, res, next) {
             // save the post
             await newResturant.save()
             console.log("restaurant saved");
-            
+
             // Clean up the uploaded file after saving to database (optional)
             if (req.file) {
                 fs.unlinkSync(path.join('uploads/' + req.file.filename));
             }
-            
+
             res.json({ "status": "success" })
 
         } catch (error) {
@@ -77,16 +77,19 @@ router.post('/', upload.single('file'), async function (req, res, next) {
             res.status(500).json({ "status": "error", "error": error.toString() })
         }
     } else {
-        res.status(401).json({status: "error", error: "not logged in"})
+        res.status(401).json({ status: "error", error: "not logged in" })
     }
 })
 
 router.get('/', async function(req, res, next) {
     try {
-        const allPosts = await req.models.RestaurantModel.find();
+        console.log("Breakpoint Check...");
+        const username = req.session.isAuthenticated ? req.session.account.username : null;
+        const query = username ? { restaurantOwner: username } : {};
+        const allPosts = await req.models.RestaurantModel.find(query);
+        
         let postData = await Promise.all(
             allPosts.map(async post => {
-                // Create a base object with all restaurant data
                 let restaurantData = {
                     restaurantName: post.restaurantName, 
                     restaurantPhoneNum: post.restaurantPhoneNum, 
@@ -99,7 +102,6 @@ router.get('/', async function(req, res, next) {
                     restaurantOwner: post.restaurantOwner
                 };
                 
-                // Add image data if present, converting buffer to base64
                 if (post.restaurantImage && post.restaurantImage.data) {
                     restaurantData.restaurantImage = {
                         data: post.restaurantImage.data.toString('base64'),
