@@ -37,6 +37,7 @@ async function loadIdentity() {
                         <div class="welcome-header">
                             <img src="./images/logo.png" alt="Restaurize Logo" class="welcome-logo">
                             <h1>Welcome</h1>
+                            <p>Your one-stop solution for managing restaurant operations efficiently!</p>
                         </div>
                     </div>
                     <div class="preview-glimpse">
@@ -44,8 +45,7 @@ async function loadIdentity() {
                         <div id="sample-restaurants"></div>
                         <div class="blur-overlay">
                             <div class="blur-content">
-                                <h3>Access Restaurants</h3>
-                                <a href="signin" class="preview-cta-button">Log in</a>
+                                <h3>Login To Access Restaurant Management</h3>
                             </div>
                         </div>
                     </div>
