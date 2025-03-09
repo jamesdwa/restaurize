@@ -480,13 +480,20 @@ body.non-authenticated {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin-bottom: 30px; */
 }
+
+.welcome-header p {
+  font-size: 30px;
+  font-style: italic;
+  margin-top: 10px;
+  color: #555;
+  font-family: 'Style Script';
+}
+
 
 .welcome-logo {
   width: 80px;
   height: auto;
-  /* margin-bottom: 20px; */
 }
 
 .welcome-content h1 {
@@ -806,7 +813,6 @@ body.non-authenticated {
   }
 }
 
-/* Animation for the welcome heading */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -901,7 +907,6 @@ body.non-authenticated {
   animation-delay: 2s;
 }
 
-/* Restaurant Detail Modal */
 .restaurant-modal {
   position: fixed;
   top: 0;
