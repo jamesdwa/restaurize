@@ -32,9 +32,9 @@ Overall we want to develop this application in order to have a better understand
 | P0 | As a owner | I want to be able to create an restaurant posting to initiate my restaurant management process. | The upload will have its separate page where input forms are visible for user entry to build the restaurant profile. | Display a clickable restaurant card that fetches stored details from MongoDB. |
 | P0 | As a owner | I want to see a viewing "box" after "uploading" my restaurant. | When logged in, upon opening the homepage, the owner should immediately see their restaurant postings in "card" display. |
 | P1 | As a owner | I want to be able to delete my restaurant postings at any time. | When logged in, upon clicking a restaurant posting, reference a restaurant posting via its post ID, and have a delete button that removes the entry of the restaurant from MongoDB.
-| P1 | As a owner | I want to add and manage employees. | Store and modify employee details under a restaurant posting within MongoDB. |
-| P2 | As a owner | I want to track restaurant revenue over time. | Store revenue data under a restaurant posting within MongoDB and allow updates. |
-| P2 | As a owner | I want to view analytics on my restaurant's performance | Aggregate and present data in a structured format for review. |
+| P1 | As a owner | I want to have a map feature that would display all the locations of my restaurants | Upon authentication, and viewing the front page, I should see the locations of my restaurants with a visible marker. |
+| P2 | As a owner | I want to be able to add the revenue for each of my restaurants. | Store revenue data under a restaurant posting within MongoDB. |
+| P2 | As a owner | I want to be able to get a more detailed view of my restaurants. | Upon clicking my restaurant postings, a more detailed view should appear as a popout. |
 
 ## API Endpoints
 **GET** /user/login
@@ -53,9 +53,6 @@ Overall we want to develop this application in order to have a better understand
 
 **DELETE** /restaurant
 - Enables managers to delete a restaurant posting.
-
-**DELETE** /employees
-- Enables managers to delete an employee from their restaurant(s).
 
 ## Database Schemas
 
