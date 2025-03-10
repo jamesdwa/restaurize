@@ -10,9 +10,9 @@ import WebAppAuthProvider from 'msal-node-wrapper'
 
 const authConfig = {
    auth: {
-      clientId: "09cd6311-61a1-4c3e-9d8c-4782f48668e0",
+      clientId: "a3a1daca-29b1-4a2b-ade8-b05b366c35e2",
       authority: "https://login.microsoftonline.com/f6b6dd5b-f02f-441a-99a0-162ac5060bd2",
-      clientSecret: "Riv8Q~PKkS1P94qYBnktdNNGeh6jcqhVoicnKaav",
+      clientSecret: "Wwa8Q~~~bRiChpEQfeXdtMmtTvbXs1XYqycW2dj8",
       redirectUri: "/redirect"
    },
    system: {
