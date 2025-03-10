@@ -169,97 +169,99 @@ async function uploadResturant() {
 }
 
 async function loadRestaurants() {
-    let postsJson = await fetchJSON(`api/${apiVersion}/post`);
-
-    let postHTML = postsJson.map(postInfo => {
-        let imageHtml = '';
-        if (postInfo.restaurantImage && postInfo.restaurantImage.data) {
-            const imageBase64 = postInfo.restaurantImage.data;
-            const contentType = postInfo.restaurantImage.contentType || 'image/jpeg';
-            imageHtml = `<img src="data:${contentType};base64,${imageBase64}" alt="${postInfo.restaurantName}"/>`;
-        } else if (postInfo.restaurantImage) {
-            imageHtml = `<img src="${postInfo.restaurantImage}" alt="${postInfo.restaurantName}"/>`;
-        } else {
-            imageHtml = `<div class="no-image-placeholder">No Image</div>`;
-        }
-
-        return (`
-            <div class="restaurant-card">
-                <div class="card-image-container">
-                    <div class="card-image-placeholder">
-                        ${imageHtml}
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3 class="restaurant-name">${postInfo.restaurantName}</h3>
-                    <div class="restaurant-details">
-                        <div class="detail-item">
-                            <span class="detail-label">Phone:</span>
-                            <span class="detail-value">${postInfo.restaurantPhoneNum}</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Location:</span>
-                            <span class="detail-value">${postInfo.location}</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Hours:</span>
-                            <span class="detail-value">${postInfo.operationHours}</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Menu:</span>
-                            <div class="restaurant-menu">
-                                ${postInfo.restaurantMenu.map(item => `<span class="menu-item">${item}</span>`).join('')}
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Employees:</span>
-                            <div class="restaurant-employees">
-                                ${Array.isArray(postInfo.employeeName) ? postInfo.employeeName.map(item => `<span class="menu-item">${item}</span>`).join('') : `<span class="menu-item">${postInfo.employeeName}</span>`}
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Revenue:</span>
-                            <span class="detail-value">${postInfo.restaurantRevenue}</span>
-                        </div>
-                    </div>
-                    <div class="restaurant-footer">
-                        <span class="capacity-badge">Capacity: ${postInfo.restaurantCapacity}</span>
-                        <div class="footer-right-section">
-                            <span class="employee-badge">${postInfo.restaurantOwner || 'Marco'}</span>
-                        </div>
-                    </div>
-                    <button class="delete-button" data-id="${postInfo._id}">Delete</button>
-                </div>
-            </div>
-        `);
-    });
-
-    document.getElementById("preview-cards-container").innerHTML = postHTML.join('');
-
-    const restaurantCards = document.querySelectorAll('.restaurant-card');
-    postsJson.forEach((postInfo, index) => {
-        const card = restaurantCards[index];
-        card.addEventListener('click', (event) => {
-            handleRestaurantCardClick(event, postInfo);
-        });
-    });
-
-    const deleteButtons = document.querySelectorAll('.delete-button');
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', (event) => {
-            event.stopPropagation();
-            const restaurantId = button.getAttribute('data-id');
-            console.log("Delete clicked for ID:", restaurantId);
-            
-            // confirm once before deleting
-            if (confirm('Are you sure you want to delete this restaurant?')) {
-                deleteRestaurant(restaurantId);
+    try {
+        let postsJson = await fetchJSON(`api/${apiVersion}/post`);
+        let postHTML = postsJson.map(postInfo => {
+            let imageHtml = '';
+            if (postInfo.restaurantImage && postInfo.restaurantImage.data) {
+                const imageBase64 = postInfo.restaurantImage.data;
+                const contentType = postInfo.restaurantImage.contentType || 'image/jpeg';
+                imageHtml = `<img src="data:${contentType};base64,${imageBase64}" alt="${postInfo.restaurantName}"/>`;
+            } else if (postInfo.restaurantImage) {
+                imageHtml = `<img src="${postInfo.restaurantImage}" alt="${postInfo.restaurantName}"/>`;
+            } else {
+                imageHtml = `<div class="no-image-placeholder">No Image</div>`;
             }
-        });
-    });
 
-    if (map) {
-        addRestaurantMarkers();
+            return (`
+                <div class="restaurant-card">
+                    <div class="card-image-container">
+                        <div class="card-image-placeholder">
+                            ${imageHtml}
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="restaurant-name">${postInfo.restaurantName}</h3>
+                        <div class="restaurant-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Phone:</span>
+                                <span class="detail-value">${postInfo.restaurantPhoneNum}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Location:</span>
+                                <span class="detail-value">${postInfo.location}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Hours:</span>
+                                <span class="detail-value">${postInfo.operationHours}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Menu:</span>
+                                <div class="restaurant-menu">
+                                    ${postInfo.restaurantMenu.map(item => `<span class="menu-item">${item}</span>`).join('')}
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Employees:</span>
+                                <div class="restaurant-employees">
+                                    ${Array.isArray(postInfo.employeeName) ? postInfo.employeeName.map(item => `<span class="menu-item">${item}</span>`).join('') : `<span class="menu-item">${postInfo.employeeName}</span>`}
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Revenue:</span>
+                                <span class="detail-value">${postInfo.restaurantRevenue}</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-footer">
+                            <span class="capacity-badge">Capacity: ${postInfo.restaurantCapacity}</span>
+                            <div class="footer-right-section">
+                                <span class="employee-badge">${postInfo.restaurantOwner || 'Marco'}</span>
+                            </div>
+                        </div>
+                        <button class="delete-button" data-id="${postInfo._id}">Delete</button>
+                    </div>
+                </div>
+            `);
+        });
+
+        document.getElementById("preview-cards-container").innerHTML = postHTML.join('');
+
+        const restaurantCards = document.querySelectorAll('.restaurant-card');
+        postsJson.forEach((postInfo, index) => {
+            const card = restaurantCards[index];
+            card.addEventListener('click', (event) => {
+                handleRestaurantCardClick(event, postInfo);
+            });
+        });
+
+        const deleteButtons = document.querySelectorAll('.delete-button');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.stopPropagation();
+                const restaurantId = button.getAttribute('data-id');
+                console.log("Delete clicked for ID:", restaurantId);
+                
+                if (confirm('Are you sure you want to delete this restaurant?')) {
+                    deleteRestaurant(restaurantId);
+                }
+            });
+        });
+
+        if (map) {
+            addRestaurantMarkers();
+        }
+    } catch(error) {
+        console.log("Error loading restaurants:", error);
     }
 }
 
