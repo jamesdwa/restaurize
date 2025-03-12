@@ -160,6 +160,7 @@ async function uploadResturant() {
             restaurantImage.src = "";
         }
 
+        window.location.reload();
         loadRestaurants();
 
     } catch (error) {
@@ -388,6 +389,7 @@ async function deleteRestaurant(restaurantId) {
         
         if (result.status === "success") {
             // reload all restaurants if successful
+            window.location.reload();
             loadRestaurants();
         } else {
             console.error("Error deleting restaurant:", result.error);

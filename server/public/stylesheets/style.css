@@ -459,6 +459,13 @@ button[type="submit"]:active {
   background-repeat: no-repeat;
 }
 
+#myChart {
+  margin-top: 20px;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
 body.non-authenticated {
   background-color: #1E1E1E;
 }
