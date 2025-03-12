@@ -8,7 +8,6 @@ async function fetchRestaurantData() {
         return await response.json();
     } catch (error) {
         console.error("Error fetching restaurant data:", error);
-        return [];
     }
 }
 
