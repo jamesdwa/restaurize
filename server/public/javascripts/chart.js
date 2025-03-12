@@ -11,12 +11,21 @@ async function fetchRestaurantData() {
     }
 }
 
+// Helper function
+function removeSymbols(revenue) {
+    // RegEx for removing symbols (dollar sign and comma)
+    return revenue.replace(/[$,]/g, '');
+}
+
+// Creates bar charts for the restaurants' revenue
 async function createRevenueChart() {
     const restaurantData = await fetchRestaurantData();
     // Maps the restaurant names and puts them in an array
     const restaurantNames = restaurantData.map(restaurant => restaurant.restaurantName);
     // Maps the restaurant revenues and puts them in an array
-    const restaurantRevenues = restaurantData.map(restaurant => restaurant.restaurantRevenue);
+    // parseFloat returns floating point number parsed from the given string
+    // or NaN when the first non-whitespace character cannot be converted to a number
+    const restaurantRevenues = restaurantData.map(restaurant => parseFloat(removeSymbols(restaurant.restaurantRevenue)));
 
     const ctx = document.getElementById('myChart');
         new Chart(ctx, {
