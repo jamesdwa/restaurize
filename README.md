@@ -20,7 +20,7 @@ Overall we want to develop this application in order to have a better understand
 # Technical Description
 
 ## Architectural Diagram
-![Photo of our architectural diagram](diagrams/Architectural-Diagram.jpg)
+![Photo of our architectural diagram](diagrams/Architecture.jpg)
 
 ## Dataflow Diagram
 ![Photo of our dataflow diagram](diagrams/Dataflow.jpg)
